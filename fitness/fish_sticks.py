@@ -1,3 +1,7 @@
+import sys, io
+from contextlib import redirect_stdout
+from difflib import SequenceMatcher
+
 class FishSticksFitness():
 	
 	def executeIndividual(self, individual, params):
@@ -10,7 +14,7 @@ class FishSticksFitness():
 
 	def fitness(self, individual):
 		try:
-			s1 = executeIndividual(individual[0], [])
+			s1 = self.executeIndividual(individual[0], [])
 		except:
 			return -1,
 		s0 = "\nfish sticks\n"

@@ -1,7 +1,5 @@
-import random, ast, sys, io, configparser
+import io, configparser
 from deap import creator, base, tools, algorithms
-from contextlib import redirect_stdout
-from difflib import SequenceMatcher
 
 from function_library import FunctionLibrary
 from string_mod.library import StringModLibrary
