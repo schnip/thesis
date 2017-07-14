@@ -8,7 +8,6 @@ from string_mod.library import StringModLibrary
 
 config = configparser.ConfigParser()
 config.read("main.ini")
-print(config.sections())
 
 lib = StringModLibrary()
 cr = lib.getCrossover()
