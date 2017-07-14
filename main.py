@@ -1,10 +1,14 @@
-import random, ast, sys, io
+import random, ast, sys, io, configparser
 from deap import creator, base, tools, algorithms
 from contextlib import redirect_stdout
 from difflib import SequenceMatcher
 
 from function_library import FunctionLibrary
 from string_mod.library import StringModLibrary
+
+config = configparser.ConfigParser()
+config.read("main.ini")
+print(config.sections())
 
 lib = StringModLibrary()
 cr = lib.getCrossover()
@@ -27,7 +31,7 @@ toolbox.register("select", tools.selTournament, tournsize=3) # I don't think the
 
 population = toolbox.population(n=300)
 
-NGEN=1000
+NGEN=int(config["genetics"]["gen_count"])
 for gen in range(NGEN):
 	print(gen)
 	offspring = algorithms.varAnd(population, toolbox, cxpb=0.5, mutpb=0.1)
