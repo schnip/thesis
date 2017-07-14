@@ -6,17 +6,17 @@ from difflib import SequenceMatcher
 from function_library import FunctionLibrary
 from string_mod.library import StringModLibrary
 
-fl = StringModLibrary()
-cr = fl.getCrossover()
-mu = fl.getMutator()
-fn = fl.getFitness()
+lib = StringModLibrary()
+cr = lib.getCrossover()
+mu = lib.getMutator()
+fn = lib.getFitness()
 
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)
 
 toolbox = base.Toolbox()
 
-toolbox.register("attr_bool", fl.generateStarters) # Starting code
+toolbox.register("attr_bool", lib.generateStarters) # Starting code
 toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.attr_bool, n=1)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
@@ -27,7 +27,7 @@ toolbox.register("select", tools.selTournament, tournsize=3) # I don't think the
 
 population = toolbox.population(n=300)
 
-NGEN=100
+NGEN=1000
 for gen in range(NGEN):
 	print(gen)
 	offspring = algorithms.varAnd(population, toolbox, cxpb=0.5, mutpb=0.1)

@@ -1,3 +1,4 @@
 outfile.txt
 __pycache__/
 */__pycache__/
+*.conf
