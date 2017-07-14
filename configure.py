@@ -1,4 +1,4 @@
-f = open('main.conf', 'w')
+f = open('main.ini', 'w')
 f.write("# The best fitness found was: " + str(fn.fitness(top10[0])[0]))
 f.write("\n# ======================================\n")
 f.write(str(top10[0][0]))
