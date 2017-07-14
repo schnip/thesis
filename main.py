@@ -4,8 +4,9 @@ from contextlib import redirect_stdout
 from difflib import SequenceMatcher
 
 from function_library import FunctionLibrary
+from string_mod.library import StringModLibrary
 
-fl = FunctionLibrary()
+fl = StringModLibrary()
 cr = fl.getCrossover()
 mu = fl.getMutator()
 fn = fl.getFitness()
@@ -14,17 +15,6 @@ creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)
 
 toolbox = base.Toolbox()
-
-expr="""
-def foo():
-   print("hello world")
-
-foo()
-"""
-# p=ast.parse(expr)
-
-def generateStarters():
-	return expr # Either original piece of code or modified
 
 toolbox.register("attr_bool", fl.generateStarters) # Starting code
 toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.attr_bool, n=1)

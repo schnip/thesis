@@ -1,6 +1,7 @@
 import random
 
 class ScrambleMutator():
+	
 	def getRandomChar(self):
 		return chr(random.randint(0, 127))
 

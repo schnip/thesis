@@ -1,6 +1,7 @@
 import random
 
 class StringSpliceCrossover():
+	
 	def noCross(self, ind1, ind2):
 		return ind1, ind2
 
