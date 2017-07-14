@@ -4,16 +4,14 @@ from contextlib import redirect_stdout
 from difflib import SequenceMatcher
 
 from function_library import FunctionLibrary
-from crossovers.inert import InertCrossover
-from crossovers.string_splice import StringSpliceCrossover
-from mutators.inert import InertMutator
-from mutators.scramble import ScrambleMutator
 
 fl = FunctionLibrary()
-cr = InertCrossover()
-cr = StringSpliceCrossover()
-mu = InertMutator()
-mu = ScrambleMutator()
+cr = fl.getCrossover()
+mu = fl.getMutator()
+# cr = InertCrossover()
+# cr = StringSpliceCrossover()
+# mu = InertMutator()
+# mu = ScrambleMutator()
 
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)
@@ -26,7 +24,7 @@ def foo():
 
 foo()
 """
-p=ast.parse(expr)
+# p=ast.parse(expr)
 
 def generateStarters():
 	return expr # Either original piece of code or modified

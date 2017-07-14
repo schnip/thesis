@@ -1,3 +1,8 @@
+from ..crossovers.inert import InertCrossover
+from ..crossovers.string_splice import StringSpliceCrossover
+from ..mutators.inert import InertMutator
+from ..mutators.scramble import ScrambleMutator
+
 class FunctionLibrary():
 	def executeIndividual(self, individual, params):
 		sys.argv = params
@@ -23,4 +28,7 @@ class FunctionLibrary():
 		return ""
 
 	def getMutator(self):
-		return 0
+		return ScrambleMutator()
+
+	def getCrossover(self):
+		return StringSpliceCrossover()
