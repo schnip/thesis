@@ -6,10 +6,14 @@ from difflib import SequenceMatcher
 from function_library import FunctionLibrary
 from crossovers.inert import InertCrossover
 from crossovers.string_splice import StringSpliceCrossover
+from mutators.inert import InertMutator
+from mutators.scramble import ScrambleMutator
 
 fl = FunctionLibrary()
 cr = InertCrossover()
 cr = StringSpliceCrossover()
+mu = InertMutator()
+mu = ScrambleMutator()
 
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)
@@ -31,40 +35,9 @@ toolbox.register("attr_bool", fl.generateStarters) # Starting code
 toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.attr_bool, n=1)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
-# Things that do the random modifications
-
-def getRandomChar():
-	return chr(random.randint(0, 127))
-
-def addChar(str):
-	if len(str) < 1: 
-		return "" + getRandomChar() + ""
-	index = random.randint(0, len(str)-1)
-	return str[:index] + getRandomChar() + str[index:]
-
-def delChar(str):
-	if len(str) < 2: 
-		return ""
-	index = random.randint(0, len(str)-1) 
-	return str[:index] + str[index+1:]
-
-def changeChar(str):
-	if len(str) < 1: 
-		return ""
-	index = random.randint(0, len(str)-1)
-	return str[:index] + getRandomChar() + str[index+1:]
-
-def noChange(str):
-	return str
-
-def codeMutator(individual):
-	changeFunc = random.choice((addChar, delChar, changeChar, noChange))
-	individual[0] = changeFunc(individual[0])
-	return individual, # TODO make this actually mutate the code
-
 toolbox.register("evaluate", fl.fitnessFunction)
 toolbox.register("mate", cr.crossover)
-toolbox.register("mutate", codeMutator)
+toolbox.register("mutate", mu.mutate)
 toolbox.register("select", tools.selTournament, tournsize=3) # I don't think there is anything that is specific to the data
 
 population = toolbox.population(n=300)
