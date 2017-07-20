@@ -39,7 +39,7 @@ for gen in range(NGEN):
 top10 = tools.selBest(population, k=1)
 for i in top10:
 	print("result", fn.fitness(i),i)
-f = open('outfile.txt', 'w')
+f = open(config["output"]["filename"] + config["output"]["fileext"], 'w')
 f.write("# The best fitness found was: " + str(fn.fitness(top10[0])[0]))
 f.write("\n# ======================================\n")
 f.write(str(top10[0][0]))
