@@ -26,7 +26,7 @@ toolbox.register("mate", cr.crossover)
 toolbox.register("mutate", mu.mutate)
 toolbox.register("select", tools.selTournament, tournsize=3) # I don't think there is anything that is specific to the data
 
-population = toolbox.population(n=300)
+population = toolbox.population(n=int(config["genetics"]["pop_size"]))
 
 NGEN=int(config["genetics"]["gen_count"])
 for gen in range(NGEN):

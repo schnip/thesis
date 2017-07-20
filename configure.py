@@ -6,4 +6,9 @@ def writeln(str):
 
 writeln("[genetics]")
 writeln("gen_count = 1000")
+writeln("pop_size = 300")
+writeln("")
+writeln("[output]")
+writeln("filename = code")
+writeln("fileext = .out.py")
 f.close()
