@@ -6,7 +6,6 @@ def gcd(a, b):
 	a = a % b
 	return gcd(b, a)
 
-
 import sys
 a = int(sys.argv[1])
 b = int(sys.argv[2])

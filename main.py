@@ -4,11 +4,12 @@ from deap import creator, base, tools, algorithms
 
 from function_library import FunctionLibrary
 from string_mod.library import StringModLibrary
+from gcd.library import GcdLibrary
 
 config = configparser.ConfigParser()
 config.read("main.ini")
 
-lib = StringModLibrary()
+lib = GcdLibrary()
 cr = lib.getCrossover()
 mu = lib.getMutator()
 fn = lib.getFitness()
