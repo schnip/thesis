@@ -17,6 +17,13 @@ class SumFitness():
 
     def __init__(self):
         self.tests = []
+        self.postpend = ""
+
+    def setPostpend(self, pst):
+        self.postpend = pst
+
+    def getPostpend(self):
+        return self.postpend
 
     def setTests(self, tsts):
         self.tests = tsts
@@ -37,7 +44,7 @@ class SumFitness():
         def test(individual):
             params = ['test.py'] + inputArgs
             try:
-                s = executeIndividual(individual[0], params)
+                s = executeIndividual(individual[0] + self.postpend, params)
             except:
                 return 0
             return compare(s[:-1], output)
