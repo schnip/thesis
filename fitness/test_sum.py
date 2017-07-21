@@ -55,3 +55,9 @@ class SumFitness():
         for test in self.tests:
             sum = sum + test(individual)
         return sum,
+
+    def getMaxFitness(self):
+        return len(self.tests)
+
+    def isMaxFitness(self, fit):
+        return fit[0] >= self.getMaxFitness()
