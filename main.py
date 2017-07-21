@@ -26,8 +26,8 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("evaluate", fn.fitness)
 toolbox.register("mate", cr.crossover)
 toolbox.register("mutate", mu.mutate)
-# I don't think there is anything that is specific to the data
 
+# I don't think there is anything that is specific to the data
 toolbox.register("select", tools.selTournament, tournsize=3)
 
 population = toolbox.population(n=int(config["genetics"]["pop_size"]))

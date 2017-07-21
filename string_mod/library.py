@@ -1,5 +1,6 @@
 from function_library import FunctionLibrary
 from fitness.fish_sticks import FishSticksFitness
+from fitness.test_sum import SumFitness
 
 expr="""
 def foo():
@@ -11,7 +12,10 @@ foo()
 class StringModLibrary(FunctionLibrary):
 
 	def getFitness(self):
-		return FishSticksFitness()
+		fit = SumFitness()
+		fit.addInputOutputTest([], "fish sticks", False)
+		return fit
+		# return FishSticksFitness()
 	
 	# p=ast.parse(expr)
 
