@@ -10,7 +10,7 @@ b = int(sys.argv[2])
 print(gcd(a,b))
 """
 
-class GcdLibrary(FunctionLibrary):
+class Library(FunctionLibrary):
 
     def getFitness(self):
         fit = SumFitness()

@@ -54,10 +54,7 @@ class SumFitness():
         sum = 0
         for test in self.tests:
             sum = sum + test(individual)
-        return sum,
-
-    def getMaxFitness(self):
-        return len(self.tests)
+        return sum/len(self.tests),
 
     def isMaxFitness(self, fit):
-        return fit[0] >= self.getMaxFitness()
+        return fit[0] >= 1

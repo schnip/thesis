@@ -1,15 +1,16 @@
 import io
 import configparser
+import importlib
 from deap import creator, base, tools, algorithms
 
 from function_library import FunctionLibrary
 from string_mod.library import StringModLibrary
-from gcd.library import GcdLibrary
 
 config = configparser.ConfigParser()
 config.read("main.ini")
 
-lib = GcdLibrary()
+library_module = importlib.import_module(config["modules"]["library"])
+lib = library_module.Library()
 cr = lib.getCrossover()
 mu = lib.getMutator()
 fn = lib.getFitness()
