@@ -31,6 +31,16 @@ class SumFitness():
     def addTest(self, test):
         self.tests.append(test)
 
+    def csvOutputInput(self, s, strict):
+        with open(s) as f:
+            lines = f.readlines()
+        lines = [l.strip() for l in lines]
+        for line in lines:
+            items = line.split(",")
+            out = items.pop(0)
+            # print(items, out)
+            self.addInputOutputTest(items, out, strict)
+
     def addInputOutputTest(self, inputArgs, output, strict):
         def strictCompare(a, b):
             if (a == b):

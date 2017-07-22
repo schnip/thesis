@@ -14,10 +14,11 @@ class Library(FunctionLibrary):
 
     def getFitness(self):
         fit = SumFitness()
-        fit.addInputOutputTest([13, 13], "13", True)
-        fit.addInputOutputTest([37, 600], "1", True)
-        fit.addInputOutputTest([20, 100], "20", True)
-        fit.addInputOutputTest([624129, 2061517], "18913", True)
+        fit.csvOutputInput("gcd/tests.csv", True)
+        # fit.addInputOutputTest([13, 13], "13", True)
+        # fit.addInputOutputTest([37, 600], "1", True)
+        # fit.addInputOutputTest([20, 100], "20", True)
+        # fit.addInputOutputTest([624129, 2061517], "18913", True)
         fit.setPostpend(pst)
         return fit
 
