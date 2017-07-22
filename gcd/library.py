@@ -1,6 +1,7 @@
 from function_library import FunctionLibrary
 from fitness.test_sum import SumFitness
 from crossovers.line_splice import LineSpliceCrossover
+from mutators.reasonable_scramble import ReasonableMutator
 
 pst = """
 
@@ -30,3 +31,6 @@ class Library(FunctionLibrary):
 
     def getCrossover(self):
         return LineSpliceCrossover()
+
+    def getMutator(self):
+        return ReasonableMutator()

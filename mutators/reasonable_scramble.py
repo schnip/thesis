@@ -5,4 +5,6 @@ import string
 class ReasonableMutator(ScrambleMutator):
 
     def getRandomChar(self):
-        return "a"
+        s = string.printable
+        i = random.randint(0,len(s) - 1)
+        return s[i:i+1]
