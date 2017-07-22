@@ -31,6 +31,15 @@ class SumFitness():
     def addTest(self, test):
         self.tests.append(test)
 
+    def addValidateTest(self):
+        def test(individual):
+            try:
+                s = executeIndividual(individual[0] + self.postpend, params)
+            except:
+                return 0
+            return 1
+        self.addTest(test)
+
     def csvOutputInput(self, s, strict):
         with open(s) as f:
             lines = f.readlines()

@@ -1,5 +1,6 @@
 from function_library import FunctionLibrary
 from fitness.test_sum import SumFitness
+from crossovers.line_splice import LineSpliceCrossover
 
 pst = """
 
@@ -15,6 +16,7 @@ class Library(FunctionLibrary):
     def getFitness(self):
         fit = SumFitness()
         fit.csvOutputInput("gcd/tests.csv", True)
+        fit.addValidateTest()
         # fit.addInputOutputTest([13, 13], "13", True)
         # fit.addInputOutputTest([37, 600], "1", True)
         # fit.addInputOutputTest([20, 100], "20", True)
@@ -25,3 +27,6 @@ class Library(FunctionLibrary):
     def generateStarters(self):
         with open("gcd/buggy.py") as startingCode:
             return startingCode.read()
+
+    def getCrossover(self):
+        return LineSpliceCrossover()
