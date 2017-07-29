@@ -31,7 +31,7 @@ class Library(FunctionLibrary):
         return fit
 
     def generateStarters(self):
-        with open(config["output"]["file"]) as startingCode:
+        with open(config["input"]["file"]) as startingCode:
             return startingCode.read()
 
     def getCrossover(self):
