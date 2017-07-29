@@ -1,20 +1,19 @@
 f = open('main.ini', 'w')
 
-def writeln(str):
-	f.write(str)
-	f.write("\n")
+default = """[genetics]
+gen_count = 1000
+pop_size = 300
 
-writeln("[genetics]")
-writeln("gen_count = 1000")
-writeln("pop_size = 300")
-writeln("")
-writeln("[output]")
-writeln("filename = code")
-writeln("fileext = .out.py")
-writeln("")
-writeln("[modules]")
-writeln("library = gcd.library")
-writeln("")
-writeln("[input]")
-writeln("file = gcd/buggy.py")
+[output]
+filename = code
+fileext = .out.py
+
+[modules]
+library = gcd.library
+
+[input]
+file = gcd/buggy.py
+"""
+
+f.write(default)
 f.close()
