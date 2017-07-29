@@ -10,16 +10,22 @@ class SpaceSpliceCrossover():
 		ib = random.randint(0, len(b)-1) if len(b) > 1 else 0
 		while (a[ia:ia+1].isspace()):
 			ia = ia + 1
+		while (b[ib:ib+1].isspace()):
+			ib = ib + 1
 		na = a[:ia] + b[ib:]
 		nb = b[:ib] + a[ia:]
 		return na, nb
 
 	def controlledCross(self, a, b):
 		i = random.randint(0, min(len(a),len(b)))
-		# print(a)
-		# print(len(a))
-		na = a[:i] + b[i:]
-		nb = b[:i] + a[i:]
+		ia = i
+		ib = i
+		while (a[ia:ia+1].isspace()):
+			ia = ia + 1
+		while (b[ib:ib+1].isspace()):
+			ib = ib + 1
+		na = a[:ia] + b[ib:]
+		nb = b[:ib] + a[ia:]
 		return na, nb
 
 	def crossover(self, ind1, ind2):

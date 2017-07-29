@@ -2,6 +2,7 @@ import sys
 import io
 from contextlib import redirect_stdout
 from difflib import SequenceMatcher
+from fitness.inert import InertFitness
 
 
 def executeIndividual(individual, params):
@@ -13,7 +14,7 @@ def executeIndividual(individual, params):
     return s
 
 
-class SumFitness():
+class SumFitness(InertFitness):
 
     def __init__(self):
         self.tests = []

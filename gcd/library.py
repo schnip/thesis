@@ -17,7 +17,7 @@ class Library(FunctionLibrary):
 
     def getFitness(self):
         fit = SumFitness()
-        fit.csvOutputInput("gcd/tests.csv", True)
+        fit.csvOutputInput("gcd/tests.csv", False)
         fit.addValidateTest()
         # fit.addInputOutputTest([13, 13], "13", True)
         # fit.addInputOutputTest([37, 600], "1", True)
