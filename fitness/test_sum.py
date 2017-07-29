@@ -13,6 +13,26 @@ def executeIndividual(individual, params):
     s = f.getvalue()
     return s
 
+def strictCompare(a, b):
+    if (a == b):
+        return 1
+    return 0
+
+def looseCompare(a, b):
+    return SequenceMatcher(None, a, b).ratio()
+
+def numDistCompare(a, b):
+    if ((a == "None") or (b == "None")):
+        return 0
+    try:
+        aa = float(a)
+        bb = float(b)
+    except:
+        return 0
+    if (aa == bb):
+        return 1
+    return 1 - 1 / abs(aa - bb)
+
 
 class SumFitness(InertFitness):
 
@@ -51,16 +71,7 @@ class SumFitness(InertFitness):
             # print(items, out)
             self.addInputOutputTest(items, out, strict)
 
-    def addInputOutputTest(self, inputArgs, output, strict):
-        def strictCompare(a, b):
-            if (a == b):
-                return 1
-            return 0
-        def looseCompare(a, b):
-            return SequenceMatcher(None, a, b).ratio()
-        compare = looseCompare
-        if strict:
-            compare = strictCompare
+    def addInputOutputTest(self, inputArgs, output, compare):
         def test(individual):
             params = ['test.py'] + inputArgs
             try:

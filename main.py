@@ -35,6 +35,7 @@ toolbox.register("select", tools.selTournament, tournsize=3)
 population = toolbox.population(n=int(config["genetics"]["pop_size"]))
 
 NGEN = int(config["genetics"]["gen_count"])
+escape = False
 for gen in range(NGEN):
 	print(gen)
 	offspring = algorithms.varAnd(population, toolbox, cxpb=0.5, mutpb=0.1)
@@ -42,8 +43,11 @@ for gen in range(NGEN):
 	for fit, ind in zip(fits, offspring):
 		if fn.isMaxFitness(fit):
 			print("DONE")
+			escape = True
 		ind.fitness.values = fit
 	population = toolbox.select(offspring, k=len(population))
+	if escape:
+		break
 top10 = tools.selBest(population, k=1)
 for i in top10:
 	print("result", fn.fitness(i), i)

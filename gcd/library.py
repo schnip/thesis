@@ -1,8 +1,9 @@
 from function_library import FunctionLibrary
-from fitness.test_sum import SumFitness
+from fitness.test_sum import *
 from crossovers.line_splice import LineSpliceCrossover
 from crossovers.space_splice import SpaceSpliceCrossover
 from mutators.reasonable_scramble import ReasonableMutator
+import configparser
 
 pst = """
 
@@ -13,11 +14,14 @@ b = int(sys.argv[2])
 print(gcd(a,b))
 """
 
+config = configparser.ConfigParser()
+config.read("main.ini")
+
 class Library(FunctionLibrary):
 
     def getFitness(self):
         fit = SumFitness()
-        fit.csvOutputInput("gcd/tests.csv", False)
+        fit.csvOutputInput("gcd/tests.csv", numDistCompare)
         fit.addValidateTest()
         # fit.addInputOutputTest([13, 13], "13", True)
         # fit.addInputOutputTest([37, 600], "1", True)
@@ -27,7 +31,7 @@ class Library(FunctionLibrary):
         return fit
 
     def generateStarters(self):
-        with open("gcd/buggy.py") as startingCode:
+        with open(config["output"]["file"]) as startingCode:
             return startingCode.read()
 
     def getCrossover(self):
