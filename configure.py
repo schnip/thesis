@@ -12,7 +12,7 @@ fileext = .out.py
 library = gcd.library
 
 [input]
-file = gcd/buggy.py
+file = gcd/buggy.0.py
 """
 
 f.write(default)
