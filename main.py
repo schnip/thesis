@@ -44,7 +44,7 @@ bestFit = None
 bestFitness = 0
 for gen in range(NGEN):
 	print(gen, bestFitness)
-	fitChart[gen] = bestFitness
+	fitChart.append(bestFitness)
 	bestFit = None
 	bestFitness = 0
 	offspring = algorithms.varAnd(population, toolbox, cxpb=0.5, mutpb=0.1)
