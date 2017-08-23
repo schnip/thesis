@@ -2,6 +2,8 @@ import io
 import configparser
 import importlib
 from deap import creator, base, tools, algorithms
+import _tkinter
+from tkinter import *
 from pylab import *
 
 from function_library import FunctionLibrary
