@@ -2,6 +2,7 @@ import io
 import configparser
 import importlib
 from deap import creator, base, tools, algorithms
+from pylab import *
 
 from function_library import FunctionLibrary
 from string_mod.library import StringModLibrary
@@ -35,15 +36,24 @@ toolbox.register("select", tools.selTournament, tournsize=3)
 population = toolbox.population(n=int(config["genetics"]["pop_size"]))
 
 NGEN = int(config["genetics"]["gen_count"])
+fitChart = []
 escape = False
+bestFit = None
+bestFitness = 0
 for gen in range(NGEN):
-	print(gen)
+	print(gen, bestFitness)
+	fitChart[gen] = bestFitness
+	bestFit = None
+	bestFitness = 0
 	offspring = algorithms.varAnd(population, toolbox, cxpb=0.5, mutpb=0.1)
 	fits = toolbox.map(toolbox.evaluate, offspring)
 	for fit, ind in zip(fits, offspring):
 		if fn.isMaxFitness(fit):
 			print("DONE")
 			escape = True
+		if fit[0] > bestFitness:
+			bestFitness = fit[0]
+			bestFit = ind
 		ind.fitness.values = fit
 	population = toolbox.select(offspring, k=len(population))
 	if escape:
@@ -57,3 +67,6 @@ f.write("\n# ======================================\n")
 f.write(str(top10[0][0]))
 f.write(fn.getPostpend())
 f.close()
+
+plot(range(NGEN), fitChart)
+show()
