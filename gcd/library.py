@@ -2,6 +2,7 @@ from function_library import FunctionLibrary
 from fitness.test_sum import *
 from crossovers.line_splice import LineSpliceCrossover
 from crossovers.space_splice import SpaceSpliceCrossover
+from crossovers.size_decorate import SizeDecorate
 from mutators.reasonable_scramble import ReasonableMutator
 import configparser
 
@@ -36,7 +37,10 @@ class Library(FunctionLibrary):
             return startingCode.read()
 
     def getCrossover(self):
-        return SpaceSpliceCrossover()
+        cr = SizeDecorate()
+        cr.setMaxLen(1000)
+        cr.setCrosser(SpaceSpliceCrossover())
+        return cr
 
     def getMutator(self):
         return ReasonableMutator()
