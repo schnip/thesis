@@ -35,18 +35,27 @@ toolbox.register("mutate", mu.mutate)
 # I don't think there is anything that is specific to the data
 toolbox.register("select", tools.selTournament, tournsize=3)
 
-population = toolbox.population(n=int(config["genetics"]["pop_size"]))
+popSize = int(config["genetics"]["pop_size"])
+population = toolbox.population(n=popSize)
 
 NGEN = int(config["genetics"]["gen_count"])
 fitChart = []
 escape = False
 bestFit = None
 bestFitness = 0
+positiveChart = []
+positiveCount = 0
+averageChart = []
+averageTotal = 0
 for gen in range(NGEN):
-	print(gen, bestFitness)
+	print(gen, bestFitness, positiveCount, averageTotal / popSize)
 	fitChart.append(bestFitness)
+	positiveChart.append(positiveCount / popSize)
+	averageChart.append(averageTotal / popSize)
 	bestFit = None
 	bestFitness = 0
+	positiveCount = 0
+	averageTotal = 0
 	offspring = algorithms.varAnd(population, toolbox, cxpb=0.5, mutpb=0.1)
 	fits = toolbox.map(toolbox.evaluate, offspring)
 	for fit, ind in zip(fits, offspring):
@@ -56,7 +65,10 @@ for gen in range(NGEN):
 		if fit[0] > bestFitness:
 			bestFitness = fit[0]
 			bestFit = ind
+		if fit[0] > 0:
+			positiveCount = positiveCount + 1
 		ind.fitness.values = fit
+		averageTotal = averageTotal + fit[0]
 	population = toolbox.select(offspring, k=len(population))
 	if escape:
 		break
@@ -71,4 +83,6 @@ f.write(fn.getPostpend())
 f.close()
 
 plot(range(NGEN), fitChart)
+plot(range(NGEN), positiveChart)
+plot(range(NGEN), averageChart)
 show()
