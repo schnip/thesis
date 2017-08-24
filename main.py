@@ -47,11 +47,19 @@ positiveChart = []
 positiveCount = 0
 averageChart = []
 averageTotal = 0
+ion()
+show()
 for gen in range(NGEN):
 	print(gen, bestFitness, positiveCount, averageTotal / popSize)
 	fitChart.append(bestFitness)
 	positiveChart.append(positiveCount / popSize)
 	averageChart.append(averageTotal / popSize)
+	clf()
+	plot(range(gen+1), fitChart)
+	plot(range(gen+1), positiveChart)
+	plot(range(gen+1), averageChart)
+	draw()
+	pause(.001)
 	bestFit = None
 	bestFitness = 0
 	positiveCount = 0
@@ -86,3 +94,4 @@ plot(range(NGEN), fitChart)
 plot(range(NGEN), positiveChart)
 plot(range(NGEN), averageChart)
 show()
+input("press enter to continue")
