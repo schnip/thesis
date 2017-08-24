@@ -47,6 +47,8 @@ positiveChart = []
 positiveCount = 0
 averageChart = []
 averageTotal = 0
+lengthChart = []
+lengthSum = 0
 ion()
 show()
 for gen in range(NGEN):
@@ -54,10 +56,15 @@ for gen in range(NGEN):
 	fitChart.append(bestFitness)
 	positiveChart.append(positiveCount / popSize)
 	averageChart.append(averageTotal / popSize)
+	if (positiveCount == 0):
+		lengthChart.append(0)
+	else:
+		lengthChart.append(lengthSum / positiveCount)
 	clf()
 	plot(range(gen+1), fitChart)
 	plot(range(gen+1), positiveChart)
 	plot(range(gen+1), averageChart)
+	# plot(range(gen+1), lengthChart)
 	draw()
 	pause(.001)
 	bestFit = None
@@ -75,6 +82,7 @@ for gen in range(NGEN):
 			bestFit = ind
 		if fit[0] > 0:
 			positiveCount = positiveCount + 1
+			lengthSum = lengthSum + len(ind)
 		ind.fitness.values = fit
 		averageTotal = averageTotal + fit[0]
 	population = toolbox.select(offspring, k=len(population))
@@ -93,5 +101,6 @@ f.close()
 plot(range(NGEN), fitChart)
 plot(range(NGEN), positiveChart)
 plot(range(NGEN), averageChart)
+# plot(range(NGEN), lengthChart)
 show()
 input("press enter to continue")
