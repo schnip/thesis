@@ -1,6 +1,7 @@
 import io
 import configparser
 import importlib
+import time
 from deap import creator, base, tools, algorithms
 import _tkinter
 from tkinter import *
@@ -49,13 +50,17 @@ averageChart = []
 averageTotal = 0
 lengthChart = []
 lengthSum = 0
+startTime = time.time()
+endTime = time.time()
 ion()
 show()
 for gen in range(NGEN):
-	print(gen, bestFitness, positiveCount, averageTotal / popSize)
+	endTime = time.time()
+	print(gen, bestFitness, positiveCount, averageTotal / popSize, startTime - endTime)
 	fitChart.append(bestFitness)
 	positiveChart.append(positiveCount / popSize)
 	averageChart.append(averageTotal / popSize)
+	startTime = endTime
 	if (positiveCount == 0):
 		lengthChart.append(0)
 	else:
