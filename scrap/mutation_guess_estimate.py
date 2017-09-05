@@ -16,3 +16,7 @@ sing_add_prob = sing_add / (char_cnt * chars_available)
 # Swap plus to divide
 sing_swap = 1 + 2 + 1 + 1
 sing_swap_prob = sing_swap / (char_cnt * chars_available)
+
+total_prob = (sing_rem_prob + sing_add_prob + sing_swap_prob) / 3
+
+print(total_prob)

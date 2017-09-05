@@ -1,1 +1,7 @@
-In space crossover, disabling the wild splicing makes it forget how to write code
+In space crossover,
+    disabling the wild splicing makes it forget how to write code
+
+For choices of how to select
+    tools.selTournament, tournsize=3: Performs okay, is the default and what I started my tests with
+    tools.selBest, k=50: May find one working solution, then forgets it after a few generations, never to find working code again
+    tools.selBest, k=5: Immediately forgets any working code that it finds
