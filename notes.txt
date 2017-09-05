@@ -5,3 +5,4 @@ For choices of how to select
     tools.selTournament, tournsize=3: Performs okay, is the default and what I started my tests with
     tools.selBest, k=50: May find one working solution, then forgets it after a few generations, never to find working code again
     tools.selBest, k=5: Immediately forgets any working code that it finds
+    tools.selTournament, tournsize=30: Much faster to having many passing individuals
