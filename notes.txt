@@ -6,3 +6,5 @@ For choices of how to select
     tools.selBest, k=50: May find one working solution, then forgets it after a few generations, never to find working code again
     tools.selBest, k=5: Immediately forgets any working code that it finds
     tools.selTournament, tournsize=30: Much faster to having many passing individuals
+    tools.selNSGA2, k=30: Does the same as selBest
+    tools.selSPEA2, k=30
