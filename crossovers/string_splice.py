@@ -23,6 +23,7 @@ class StringSpliceCrossover():
 	def crossover(self, ind1, ind2):
 		# print(ind1)
 		crossFunc = random.choice((self.noCross, self.controlledCross, self.randomCross))
+		# crossFunc = self.controlledCross
 		(a,b) = crossFunc(ind1[0], ind2[0])
 		ind1[0] = a
 		ind2[0] = b
