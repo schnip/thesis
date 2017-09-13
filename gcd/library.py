@@ -44,7 +44,7 @@ class Library(FunctionLibrary):
         cr.setCrosser(StringSpliceCrossover())
         # cr.setCrosser(SpaceSpliceCrossover())
         mc = MultiDecorate()
-        mc.setTimes(2)
+        mc.setTimes(3)
         mc.setCrosser(cr)
         return mc
 
